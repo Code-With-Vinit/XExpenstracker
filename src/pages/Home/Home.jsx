@@ -10,6 +10,10 @@ function Home() {
     const [isMounted,setIsMounted]=useState(false);
 
 
+    const [isOpenExpense, setIsOpenExpense] = useState(false);
+    const [isOpenBalance, setIsOpenBalance] = useState(false);
+
+
     const[categorySpends,setCategorySpends]=useState({
         food:0,
         entertainment:0,
@@ -45,7 +49,7 @@ function Home() {
 
 
     useEffect(()=>{
-        if(expenseList.length>0 || isMounted==true)
+        if(expenseList.length>0 || isMounted===true)
         {
             localStorage.setItem("expenses",JSON.stringify(expenseList));
         }
@@ -133,17 +137,19 @@ function Home() {
                 handleClick={()=>{
                     setIsOpenExpense(true);
                 }}
-            
-            
-            
-            
             />
 
 
+            <PieChart
+                data={[
+                {name:"Food",value:categorySpends.food},
+                {name:"Entertainment",value:categorySpends.entertainment},
+                {name:"Travel",value:categorySpends.travel}
+                ]}
+            />
 
 
         </div>
-
 
 
 

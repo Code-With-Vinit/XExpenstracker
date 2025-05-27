@@ -1,13 +1,14 @@
-import Button from "../../components/Button/Button";
+import Button from "../Button/Button";
+import styles from "./Card.module.css";
 
 function Card({title,money,buttonText,buttonType,handleClick,success=true}) {
 
 
   return (
-    <div>
-        <h3>
+    <div className={styles.card}>
+        <h3 className={styles.CardTitle}>
             {`${title}`}
-            <span>
+            <span className={success ? styles.success : styles.failure}>
                 {`₹${money}`}
             </span>
         </h3>

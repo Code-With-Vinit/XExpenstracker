@@ -1,0 +1,26 @@
+.card{
+    background-color: var(--secondary-bg-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 45px 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 4px rgba(0,0,0,0.25);
+}
+.CardTitle{
+    color: #FFFFFF;
+    font-weight: 400;
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+.cardTitle span{
+    font-weight: 700;
+}
+.success{
+    color:#9DFF5B;
+}
+.failure{
+    color: #f4bb4a;
+}
