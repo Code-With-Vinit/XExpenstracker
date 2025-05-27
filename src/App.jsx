@@ -1,4 +1,4 @@
-import Home from "../pages/Home/Home";
+import Home from "./pages/Home/Home";
 import {SnackbarProvider} from "notistack";
 
 function App() {

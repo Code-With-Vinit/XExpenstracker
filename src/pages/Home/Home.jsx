@@ -1,4 +1,5 @@
 import {React,useState,useEffect} from "react";
+import Card from "../../components/Card/Card";
 
 
 function Home() {
@@ -104,21 +105,49 @@ function Home() {
         }
     },[balance])
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+//   <div className={styles.container}>
   return (
-    <div>Home</div>
+    <div>
+        <h1>Expense Tracker</h1>
+
+        {/* Cards and PieChart Wrapper */}
+
+        <div>
+
+            <Card
+                title="Wallet Balance"
+                money={balance}
+                buttonText="+ Add Income"
+                buttonType="Success"
+                handleClick={()=>{
+                    setIsOpenBalance(true);
+                }}
+            />
+
+            <Card
+                title="Expenses"
+                money={expenses}
+                buttonText="+ Add Expense"
+                buttonType="failure"
+                success={false}
+                handleClick={()=>{
+                    setIsOpenExpense(true);
+                }}
+            
+            
+            
+            
+            />
+
+
+
+
+        </div>
+
+
+
+
+    </div>
   )
 }
 
