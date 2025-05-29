@@ -1,5 +1,7 @@
 import {React,useState,useEffect} from "react";
 import Card from "../../components/Card/Card";
+import PieChart from "../../components/PieChart/PieChart";
+import BarChart from "../../components/BarChart/Barchart";
 
 
 function Home() {
@@ -147,6 +149,24 @@ function Home() {
                 {name:"Travel",value:categorySpends.travel}
                 ]}
             />
+
+        </div>
+
+
+        {/* Transactions and BarChart Wrapper */}
+
+        <div>
+
+            <BarChart
+                data={[
+                {name:"Food",value:categoryCount.food},
+                {name:"Entertainment",value:categoryCount.entertainment},
+                {name:"Travel",value:categoryCount.travel}
+                ]}
+            />
+             
+            
+
 
 
         </div>
