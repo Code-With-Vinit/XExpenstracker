@@ -157,6 +157,15 @@ function Home() {
 
         <div>
 
+            <TransactionList
+                transactions={expenseList}
+                editTransactions={setExpenseList}
+                title="Recent Transactions"
+                balance={balance}
+                setBalance={setBalance}
+            />
+
+
             <BarChart
                 data={[
                 {name:"Food",value:categoryCount.food},
@@ -165,10 +174,6 @@ function Home() {
                 ]}
             />
              
-            
-
-
-
         </div>
 
 
