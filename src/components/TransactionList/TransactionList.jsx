@@ -13,6 +13,8 @@ function TransactionList({transactions,title,editTransactions,balance,setBalance
     const [currentPage,setCurrentPage]=useState(1);
     const [totalPages,setTotalPages]=useState(0);
 
+  
+
 
 
     useEffect(()=>{
@@ -23,7 +25,15 @@ function TransactionList({transactions,title,editTransactions,balance,setBalance
         setCurrentTransactions([...transactions].slice(startIndex,endIndex));
         setTotalPages(Math.ceil(transactions.length/maxRecords))
 
-    },[currentPage,transactions])
+    },[currentPage,transactions]);
+
+
+    useEffect(()=>{
+        if(totalPages<currentPage && currentPage>1)
+        {
+          setCurrentPage(prev=>prev-1);
+        }
+    },[totalPages])
 
 
 
@@ -31,7 +41,45 @@ function TransactionList({transactions,title,editTransactions,balance,setBalance
 
 
   return (
-    <div>TransactionList</div>
+    <div className={}>
+
+      {title && <h2>{title}</h2>}
+
+      {transactions.length>0 ?
+       <div className={}>
+          <div>
+            {currentTransactions.map(transaction=>(
+              <TransactionCard
+                details={transaction}
+                key={transaction.id}
+                handleDelete={()=>{handleDelete(transaction.id)}}
+                handleEdit={()=>{handleEdit(transaction.id)}}
+              />
+            ))}
+          </div>
+          {totalPages>1 && <Pagination updatePage={setCurrentPage} currentPage={currentPage} totalPages={totalPages}/>}
+       </div>
+       :
+       (
+        <div className={}>
+          <p>No Transactions!</p>
+        </div>
+       )
+      }
+
+      <Modal isOpen={isDisplayEditor} setIsOpen={setIsDisplayEditor} >
+        <ExpenseForm
+          editId={editId}
+          expenseList={transactions}
+          setExpenseList={editTransactions}
+          setIsOpen={setIsDisplayEditor}
+          balance={balance}
+          setBalance={setBalance}
+        />
+      </Modal>
+    
+    
+    </div>
   )
 }
 

@@ -165,7 +165,6 @@ function Home() {
                 setBalance={setBalance}
             />
 
-
             <BarChart
                 data={[
                 {name:"Food",value:categoryCount.food},
@@ -176,6 +175,22 @@ function Home() {
              
         </div>
 
+
+        {/* Modals */}
+
+        <Modal isOpen={isOpenExpense} setIsOpen={setIsOpenExpense}>
+            <ExpenseForm
+             setIsOpen={setIsOpenExpense}
+             expenseList={setExpenseList}
+             setExpenseList={setExpenseList}
+             setBalance={setBalance}
+             balance={balance}     
+            />
+        </Modal>
+
+        <Modal isOpen={isOpenBalance} setIsOpen={setIsOpenBalance}>
+            <AddBalanceForm  setIsOpen={setIsOpenBalance} setBalance={setBalance} />
+        </Modal>
 
 
     </div>
