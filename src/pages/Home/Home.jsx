@@ -1,7 +1,12 @@
-import {React,useState,useEffect} from "react";
+import { useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
+import styles from "./Home.module.css";
+import TransactionList from "../../components/TransactionList/TransactionList";
+import ExpenseForm from "../../components/Forms/ExpenseForm/ExpenseForm";
+import Modal from "../../components/Modal/Modal";
+import AddBalanceForm from "../../components/Forms/AddBalanceForm/AddBalanceForm";
 import PieChart from "../../components/PieChart/PieChart";
-import BarChart from "../../components/BarChart/Barchart";
+import BarChart from "../../components/BarChart/BarChart";
 
 
 function Home() {
