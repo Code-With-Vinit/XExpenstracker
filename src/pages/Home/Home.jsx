@@ -116,88 +116,90 @@ function Home() {
         }
     },[balance])
 
-//   <div className={styles.container}>
+
   return (
-    <div>
-        <h1>Expense Tracker</h1>
-
-        {/* Cards and PieChart Wrapper */}
-
+    <div className={styles.container}>
         <div>
+            <h1>Expense Tracker</h1>
 
-            <Card
-                title="Wallet Balance"
-                money={balance}
-                buttonText="+ Add Income"
-                buttonType="Success"
-                handleClick={()=>{
-                    setIsOpenBalance(true);
-                }}
-            />
+            {/* Cards and PieChart Wrapper */}
 
-            <Card
-                title="Expenses"
-                money={expenses}
-                buttonText="+ Add Expense"
-                buttonType="failure"
-                success={false}
-                handleClick={()=>{
-                    setIsOpenExpense(true);
-                }}
-            />
+            <div className={styles.cardsWrapper}>
 
+                <Card
+                    title="Wallet Balance"
+                    money={balance}
+                    buttonText="+ Add Income"
+                    buttonType="success"
+                    handleClick={()=>{
+                        setIsOpenBalance(true);
+                    }}
+                />
 
-            <PieChart
-                data={[
-                {name:"Food",value:categorySpends.food},
-                {name:"Entertainment",value:categorySpends.entertainment},
-                {name:"Travel",value:categorySpends.travel}
-                ]}
-            />
-
-        </div>
+                <Card
+                    title="Expenses"
+                    money={expenses}
+                    buttonText="+ Add Expense"
+                    buttonType="failure"
+                    success={false}
+                    handleClick={()=>{
+                        setIsOpenExpense(true);
+                    }}
+                />
 
 
-        {/* Transactions and BarChart Wrapper */}
+                <PieChart
+                    data={[
+                    {name:"Food",value:categorySpends.food},
+                    {name:"Entertainment",value:categorySpends.entertainment},
+                    {name:"Travel",value:categorySpends.travel}
+                    ]}
+                />
 
-        <div>
+            </div>
 
-            <TransactionList
-                transactions={expenseList}
-                editTransactions={setExpenseList}
-                title="Recent Transactions"
-                balance={balance}
+
+            {/* Transactions and BarChart Wrapper */}
+
+            <div className={styles.transactionsWrapper}>
+
+                <TransactionList
+                    transactions={expenseList}
+                    editTransactions={setExpenseList}
+                    title="Recent Transactions"
+                    balance={balance}
+                    setBalance={setBalance}
+                />
+
+                <BarChart
+                    data={[
+                    {name:"Food",value:categoryCount.food},
+                    {name:"Entertainment",value:categoryCount.entertainment},
+                    {name:"Travel",value:categoryCount.travel}
+                    ]}
+                />
+                
+            </div>
+
+
+            {/* Modals */}
+
+            <Modal isOpen={isOpenExpense} setIsOpen={setIsOpenExpense}>
+                <ExpenseForm
+                setIsOpen={setIsOpenExpense}
+                expenseList={expenseList}
+                setExpenseList={setExpenseList}
                 setBalance={setBalance}
-            />
+                balance={balance}     
+                />
+            </Modal>
 
-            <BarChart
-                data={[
-                {name:"Food",value:categoryCount.food},
-                {name:"Entertainment",value:categoryCount.entertainment},
-                {name:"Travel",value:categoryCount.travel}
-                ]}
-            />
-             
+            <Modal isOpen={isOpenBalance} setIsOpen={setIsOpenBalance}>
+                <AddBalanceForm  setIsOpen={setIsOpenBalance} setBalance={setBalance} />
+            </Modal>
+
+
         </div>
-
-
-        {/* Modals */}
-
-        <Modal isOpen={isOpenExpense} setIsOpen={setIsOpenExpense}>
-            <ExpenseForm
-             setIsOpen={setIsOpenExpense}
-             expenseList={setExpenseList}
-             setExpenseList={setExpenseList}
-             setBalance={setBalance}
-             balance={balance}     
-            />
-        </Modal>
-
-        <Modal isOpen={isOpenBalance} setIsOpen={setIsOpenBalance}>
-            <AddBalanceForm  setIsOpen={setIsOpenBalance} setBalance={setBalance} />
-        </Modal>
-
-
     </div>
   )
 }

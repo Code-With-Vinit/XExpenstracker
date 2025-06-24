@@ -1,4 +1,9 @@
-import {React,useState,useEffect} from 'react';
+import TransactionCard from '../TransactionCard/TransactionCard'
+import styles from './TransactionList.module.css'
+import Modal from '../Modal/Modal'
+import ExpenseForm from '../Forms/ExpenseForm/ExpenseForm'
+import { useEffect, useState } from 'react'
+import Pagination from '../Pagination/Pagination'
 
 
 
@@ -13,8 +18,21 @@ function TransactionList({transactions,title,editTransactions,balance,setBalance
     const [currentPage,setCurrentPage]=useState(1);
     const [totalPages,setTotalPages]=useState(0);
 
-  
+    const handleDelete = (id) => {
 
+        const item = transactions.find(i => i.id == id)
+        const price = Number(item.price)
+        setBalance(prev => prev + price)
+
+        editTransactions(prev => (
+            prev.filter(item => item.id != id)
+        ))
+    }
+
+    const handleEdit = (id) => {
+        setEditId(id)
+        setIsDisplayEditor(true)
+    }
 
 
     useEffect(()=>{
@@ -41,12 +59,12 @@ function TransactionList({transactions,title,editTransactions,balance,setBalance
 
 
   return (
-    <div className={}>
+    <div className={styles.transactionsWrapper}>
 
       {title && <h2>{title}</h2>}
 
       {transactions.length>0 ?
-       <div className={}>
+       <div className={styles.list}>
           <div>
             {currentTransactions.map(transaction=>(
               <TransactionCard
@@ -61,7 +79,7 @@ function TransactionList({transactions,title,editTransactions,balance,setBalance
        </div>
        :
        (
-        <div className={}>
+        <div className={styles.emptyTransactionsWrapper}>
           <p>No Transactions!</p>
         </div>
        )

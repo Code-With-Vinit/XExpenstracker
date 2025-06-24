@@ -38,7 +38,7 @@ function AddBalanceForm({setIsOpen, setBalance}) {
             />
 
             <Button type="submit" style="primary" shadow>
-                AddBalance
+                Add Balance
             </Button>
 
             <Button style="secondary" shadow handleClick={()=>setIsOpen(false)}>

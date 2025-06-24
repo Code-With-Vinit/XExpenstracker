@@ -7,7 +7,7 @@ function Card({title,money,buttonText,buttonType,handleClick,success=true}) {
   return (
     <div className={styles.card}>
         <h3 className={styles.CardTitle}>
-            {`${title}`}
+            {`${title}: `}
             <span className={success ? styles.success : styles.failure}>
                 {`₹${money}`}
             </span>

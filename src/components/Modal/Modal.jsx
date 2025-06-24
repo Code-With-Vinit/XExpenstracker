@@ -1,6 +1,8 @@
 import styles from './Modal.module.css'
 import Modal from 'react-modal'
 
+Modal.setAppElement('#root');
+
 function ModalComponent({isOpen,setIsOpen,children}) {
 
     const handleClose=()=>{
